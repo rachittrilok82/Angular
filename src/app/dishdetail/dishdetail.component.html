@@ -7,7 +7,7 @@ fxLayoutAlign.gt-md="space-around center"
 fxLayoutGap="10px" 
 fxLayoutGap.xs="0">
 
-<div fxFlex *ngIf="dish">
+<div fxFlex *ngIf="dish" [@visibility]="visibility" [@expand]>
   <mat-card>
     <mat-card-header>
       <mat-card-title>
@@ -15,7 +15,7 @@ fxLayoutGap.xs="0">
 
       </mat-card-title>
     </mat-card-header>
-    <img mat-card-image src={{dish.image}} alt={{dish.name}}>
+    <img mat-card-image src="{{BaseURL + dish.image}}" alt={{dish.name}}>
     <mat-card-content>
       <p>{{dish.description}}
       </p>
@@ -31,7 +31,7 @@ fxLayoutGap.xs="0">
   </mat-card>
 </div>
 
-<div fxFlex="40" *ngIf="dish">
+<div fxFlex="40" *ngIf="dish" [@visibility]="visibility" [@expand]>
   <mat-list>
     <mat-list-item>
       <h2> Comments </h2>        
@@ -90,8 +90,11 @@ fxLayoutGap.xs="0">
 
 </div>
 
-<div [hidden]="dish">
+<div [hidden]="dish || errMess">
   <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
 </div>
-
+<div *ngIf="errMess">
+  <h2>Error</h2>
+  <h4>{{errMess}}</h4>
+</div>
 </div>
